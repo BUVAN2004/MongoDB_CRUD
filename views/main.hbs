@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MONGODB CRUD</title>
+</head>
+<body>
+    <h1>MongoDB CRUD operations Examples</h1>
+    <h2>C-Create/ R-Read/ U-Update/ D-Delete</h2>
+    {{message}}
+
+    {{#if edit_id}}
+    <br><h3>Updation Operation</h3>
+    <form method="post" action="/update_employee/{{edit_id}}">
+        <label for="">Name : </label>
+        <input type="text" name ="name" value="{{edit_employee.name}}"><br>
+        <label for="">Age : </label>
+        <input type="text" name ="age" value="{{edit_employee.age}}"><br>
+        <label for="">Designation : </label>
+        <input type="text" name ="designation" value="{{edit_employee.designation}}"><br>
+        <input type="submit">
+    </form><br><br>
+    
+    {{else}}
+    <br><h3>Create Operation</h3>
+    <form method="post" action="/save_employee">
+        <label for="">Name : </label>
+        <input type="text" name ="name"><br>
+        <label for="">Age : </label>
+        <input type="text" name ="age"><br>
+        <label for="">Designation : </label>
+        <input type="text" name ="designation"><br>
+        <input type="submit">
+    </form><br><br>
+    {{/if}}
+
+
+    <ul>
+        {{#each data}}
+        <li>{{this.name}} - {{this.age}} - {{this.designation}} <a href="/?edit_id={{this._id}}">Edit</a> <a href="/?edit_id={{this._id}}" onclick= "return confirm('Are you sure want to delete ?')">Delete</a></li>
+        {{/each}}
+    </ul>
+
+</body>
+</html>
